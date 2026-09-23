@@ -22,7 +22,8 @@ from plotly.subplots import make_subplots
 # ----------------------------------------------------------------------------
 # PAGE CONFIG
 # ----------------------------------------------------------------------------
-st.set_page_config(page_title="Stock Analyzer", page_icon="📈", layout="wide")
+st.set_page_config(page_title="Stock Analyzer", page_icon="📈", layout="wide",
+                   initial_sidebar_state="expanded")
 
 # ----------------------------------------------------------------------------
 # TECHNICAL INDICATORS (pure pandas/numpy)
@@ -758,12 +759,18 @@ st.markdown("""
     .main-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 0; }
     .subtitle { color: #888; margin-top: 0; }
     div[data-testid="stMetricValue"] { font-size: 1.4rem; }
-    /* Κρύβει το πάνω-δεξιά μενού (☰), την κεφαλίδα και το footer του Streamlit */
+    /* Hide the Streamlit top-right menu, toolbar and footer — WITHOUT hiding
+       the sidebar toggle (which lives in the header). */
     #MainMenu { visibility: hidden; }
-    header { visibility: hidden; }
     footer { visibility: hidden; }
     div[data-testid="stToolbar"] { visibility: hidden; }
     div[data-testid="stDecoration"] { display: none; }
+    /* Make the header transparent instead of hidden, so the sidebar arrow stays clickable */
+    header[data-testid="stHeader"] { background: transparent; }
+    /* Always keep the sidebar open/collapse control visible and on top */
+    div[data-testid="stSidebarCollapsedControl"],
+    button[data-testid="stBaseButton-headerNoPadding"],
+    button[kind="header"] { visibility: visible !important; opacity: 1 !important; z-index: 999999 !important; }
 </style>
 """, unsafe_allow_html=True)
 
