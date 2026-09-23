@@ -764,32 +764,16 @@ st.markdown("""
     footer { visibility: hidden; }
     div[data-testid="stToolbar"] { visibility: hidden; }
     div[data-testid="stDecoration"] { display: none; }
-    /* Keep the header present (do NOT hide it) so the sidebar reopen arrow works. */
     header[data-testid="stHeader"] { background: transparent; }
-    /* Make the "reopen sidebar" control always visible, large and unmissable. */
-    div[data-testid="stSidebarCollapsedControl"] {
+    /* Keep the settings sidebar permanently open: hide the collapse (X / arrow)
+       button so it can't be closed, and force the sidebar to stay visible. */
+    div[data-testid="stSidebarCollapseButton"],
+    button[data-testid="stBaseButton-headerNoPadding"],
+    div[data-testid="stSidebarCollapsedControl"] { display: none !important; }
+    section[data-testid="stSidebar"] {
         visibility: visible !important;
-        opacity: 1 !important;
-        display: flex !important;
-        z-index: 999999 !important;
-        top: 0.5rem !important;
-        left: 0.5rem !important;
-    }
-    div[data-testid="stSidebarCollapsedControl"] button {
-        background: #2166ac !important;
-        color: #fff !important;
-        border-radius: 8px !important;
-        padding: 6px 10px !important;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.25) !important;
-    }
-    div[data-testid="stSidebarCollapsedControl"] button svg { fill: #fff !important; color: #fff !important; }
-    /* A small "Menu" label next to the reopen arrow so it's obvious. */
-    div[data-testid="stSidebarCollapsedControl"] button::after {
-        content: " Menu";
-        font-size: 0.85rem;
-        font-weight: 700;
-        color: #fff;
-        margin-left: 2px;
+        transform: none !important;
+        min-width: 300px !important;
     }
 </style>
 """, unsafe_allow_html=True)
