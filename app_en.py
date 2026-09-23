@@ -23,7 +23,7 @@ from plotly.subplots import make_subplots
 # PAGE CONFIG
 # ----------------------------------------------------------------------------
 st.set_page_config(page_title="Stock Analyzer", page_icon="📈", layout="wide",
-                   initial_sidebar_state="expanded")
+                   initial_sidebar_state="auto")
 
 # ----------------------------------------------------------------------------
 # TECHNICAL INDICATORS (pure pandas/numpy)
@@ -759,22 +759,10 @@ st.markdown("""
     .main-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 0; }
     .subtitle { color: #888; margin-top: 0; }
     div[data-testid="stMetricValue"] { font-size: 1.4rem; }
-    /* Hide only the top-right hamburger menu, toolbar and footer. */
-    #MainMenu { visibility: hidden; }
+    /* Hide only the footer. The header (with the sidebar show/hide arrow) and the
+       sidebar are left completely untouched, so Streamlit's native, mobile-friendly
+       toggle works normally. */
     footer { visibility: hidden; }
-    div[data-testid="stToolbar"] { visibility: hidden; }
-    div[data-testid="stDecoration"] { display: none; }
-    header[data-testid="stHeader"] { background: transparent; }
-    /* Keep the settings sidebar permanently open: hide the collapse (X / arrow)
-       button so it can't be closed, and force the sidebar to stay visible. */
-    div[data-testid="stSidebarCollapseButton"],
-    button[data-testid="stBaseButton-headerNoPadding"],
-    div[data-testid="stSidebarCollapsedControl"] { display: none !important; }
-    section[data-testid="stSidebar"] {
-        visibility: visible !important;
-        transform: none !important;
-        min-width: 300px !important;
-    }
 </style>
 """, unsafe_allow_html=True)
 
