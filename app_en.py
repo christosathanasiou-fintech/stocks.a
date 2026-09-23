@@ -759,18 +759,38 @@ st.markdown("""
     .main-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 0; }
     .subtitle { color: #888; margin-top: 0; }
     div[data-testid="stMetricValue"] { font-size: 1.4rem; }
-    /* Hide the Streamlit top-right menu, toolbar and footer — WITHOUT hiding
-       the sidebar toggle (which lives in the header). */
+    /* Hide only the top-right hamburger menu, toolbar and footer. */
     #MainMenu { visibility: hidden; }
     footer { visibility: hidden; }
     div[data-testid="stToolbar"] { visibility: hidden; }
     div[data-testid="stDecoration"] { display: none; }
-    /* Make the header transparent instead of hidden, so the sidebar arrow stays clickable */
+    /* Keep the header present (do NOT hide it) so the sidebar reopen arrow works. */
     header[data-testid="stHeader"] { background: transparent; }
-    /* Always keep the sidebar open/collapse control visible and on top */
-    div[data-testid="stSidebarCollapsedControl"],
-    button[data-testid="stBaseButton-headerNoPadding"],
-    button[kind="header"] { visibility: visible !important; opacity: 1 !important; z-index: 999999 !important; }
+    /* Make the "reopen sidebar" control always visible, large and unmissable. */
+    div[data-testid="stSidebarCollapsedControl"] {
+        visibility: visible !important;
+        opacity: 1 !important;
+        display: flex !important;
+        z-index: 999999 !important;
+        top: 0.5rem !important;
+        left: 0.5rem !important;
+    }
+    div[data-testid="stSidebarCollapsedControl"] button {
+        background: #2166ac !important;
+        color: #fff !important;
+        border-radius: 8px !important;
+        padding: 6px 10px !important;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.25) !important;
+    }
+    div[data-testid="stSidebarCollapsedControl"] button svg { fill: #fff !important; color: #fff !important; }
+    /* A small "Menu" label next to the reopen arrow so it's obvious. */
+    div[data-testid="stSidebarCollapsedControl"] button::after {
+        content: " Menu";
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #fff;
+        margin-left: 2px;
+    }
 </style>
 """, unsafe_allow_html=True)
 
